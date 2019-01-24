@@ -24,7 +24,7 @@ $(function() {
 
 		// langs toggle
 			$('.lang-switch__toggler').click(function() {
-				alert('lang-switch');
+				
 				var $langLinks = $(this).closest('.header-lang').find('a');
 				
 				$langLinks.each(function(ind, elem) {
@@ -42,7 +42,7 @@ $(function() {
 			var slideout = new Slideout({
 				'panel': document.querySelector('.main-content'),
 				'menu': document.querySelector('.mobile-nav'),
-				'padding': 256,
+				'padding': 320,
 				'tolerance': 70
 			});
 
@@ -379,11 +379,13 @@ $(function() {
 					this.events();
 				}
 				this.events = function() {
-					$('.services-menu li').on('click', this.menuClick);
+					$('.services-menu li, .services-menu__mob-item').on('click', this.menuClick);
 				}
 				this.menuClick = function(e) {
+					e.preventDefault();
 					_self.menuRender($(this));
 					_self.displayRender($(this));
+
 				}
 				this.menuRender = function(menuItem) {
 					menuItem.addClass('active')
@@ -392,10 +394,10 @@ $(function() {
 				}
 				this.displayRender = function(menuItem) {
 					var title = menuItem.find('span').text();
-					// console.log(title);
+					console.log(title);
 					
 					$servicesDisplay.each(function(ind, elem) {
-							console.log($(elem).attr('data-title'));
+							
 						if($(elem).attr('data-title') === title){
 							$(elem).removeClass('hidden')
 									.siblings()
