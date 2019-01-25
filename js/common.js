@@ -270,8 +270,8 @@ $(function() {
 				slidesToScroll: 1,
  				rows: 2,
  				slidesPerRow: 6,
-				prevArrow: $('.other-cases .slider-arrow-mini--prev'),
-				nextArrow: $('.other-cases .slider-arrow-mini--next'),
+				prevArrow: $('.clients__logos-handler .slider-arrow-mini--prev'),
+				nextArrow: $('.clients__logos-handler .slider-arrow-mini--next'),
 				responsive: [
 					
 					{
@@ -293,27 +293,41 @@ $(function() {
 					{
 						breakpoint: 790,
 						settings: {
-
-							slidesPerRow: 3
+							rows: 1,
+							slidesToShow: 2,
+							slidesPerRow: 1
 
 						}	
 					},
 					{
 						breakpoint: 600,
 						settings: {
-
-							slidesPerRow: 2
+							slidesToShow: 2,
+							rows: 1,
+							slidesPerRow: 1
 						}
 
 					},
 					{
 						breakpoint: 480,
 						settings: {
-
+							rows: 1,
+							slidesToShow: 2,
 							slidesPerRow: 1
 						}
 
-					}
+					},
+
+					{
+						breakpoint: 375,
+						settings: {
+							rows: 1,
+							slidesToShow: 1,
+							slidesPerRow: 1
+						}
+
+					},
+
 					
 				]
 			});
@@ -437,6 +451,48 @@ $(function() {
 				}
 			});
 		// end Accordeon-----------------------------------
+
+		// sky-dropdown absolute
+			function skyDropdownAbsToggle() {
+				var $link = $('.sky-dropdown-abs .sky-dropdown__link'),
+						_self = this,
+						$bd = $('body');
+
+				this.init = function() {
+					console.log('skyDropdownToggler');
+					this.events();
+				},
+
+				this.events = function() {
+					$link.on('click', this.linkClick);
+					$bd.on('click', this.bdClick);
+					$('.sky-dropdown-abs__item').on('click', this.itemClick);
+				}
+
+				this.linkClick = function(e) {
+					e.stopPropagation();
+					
+					$(this).next('.sky-dropdown__sublist')
+						.fadeToggle();
+
+					return false;
+				},
+
+				this.bdClick = function() {
+					$link.next('.sky-dropdown__sublist')
+						.fadeOut();
+				},
+
+				this.itemClick = function(e) {
+					e.stopPropagation();
+				}
+
+			}
+
+			var skyDropdownToggler = new skyDropdownAbsToggle();
+
+			skyDropdownToggler.init();
+		// end sky-dropdown absolute
 
 
 		// imput masking
